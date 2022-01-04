@@ -123,5 +123,13 @@
 
 ### Kubernetes 调用流程
 
-1. 用户通过 `kubectl` 来进行操作，例如部署新应用。
-2. API Server 收到请求
+![调用流程](./images/Kubernetes调用流程.png)
+
+1. 用户通过 `kubectl` 来进行操作，例如部署新应用；
+2. `API Server` 收到请求，并将其存储到 `Etcd` ；
+3. `Watcher` 和 `Controllers` 检测到资源状态的变化，并进行操作；
+4. `ReplicaSet watcher / controllers` 检测到新的 app，创建新的 `Pod` 达到期望的实例个数；
+5. `Scheduler` 将新的 `Pod` 分配到 `Kubelet`；
+6. `Kubelet` 检测到 `Pods`，并通过容器运行时部署他们；
+7. `Kube-proxy` 管理 `Pod` 的网络，包括服务发现、负载均衡。
+
