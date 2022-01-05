@@ -495,3 +495,24 @@ curl $(minikube ip):30080
 Ingress 和 Service 的网络拓扑关系图如下：
 
 ![关系图](./images/Ingress和Service的网络拓扑关系.png)
+
+
+## K8S真的放弃Docker了吗？
+
+Docker 作为非常流行的容器技术，之前经常有文章说它被 K8S 弃用了，取而代之的是另一种容器技术 containerd ！
+其实 containerd 只是从 Docker 中分离出来的底层容器运行时，使用起来和 Docker 并没有什么区别，从 Docker 转型 containerd 非常简单，基本没有什么门槛。
+只要把 Docker 命令中的 `docker` 改为 `crictl` 基本就可以了，都是同一个公司出品的东西，用法都一样。所以不管 K8S 到底弃用不弃用 Docker，对我们开发者使用来说，基本没啥影响！
+
+### K8S CRI
+
+K8S 发布 `CRI`（`Container Runtime Interface`），统一了容器运行时接口，凡是支持 `CRI` 的容器运行时，皆可作为 K8S 的底层容器运行时。 
+
+K8S 为什么要放弃使用 Docker 作为容器运行时，而使用 containerd 呢？
+
+如果你使用 Docker 作为 K8S 容器运行时的话，kubelet 需要先要通过 `dockershim` 去调用 Docker，再通过 Docker 去调用 containerd。
+
+如果你使用 containerd 作为 K8S 容器运行时的话，由于 containerd 内置了 `CRI` 插件，kubelet 可以直接调用 containerd。
+
+使用 containerd 不仅性能提高了（调用链变短了），而且资源占用也会变小（Docker 不是一个纯粹的容器运行时，具有大量其他功能）。
+
+当然，未来 Docker 也有可能自己直接实现 K8S 的 `CRI` 接口来兼容 K8S 的底层使用。
