@@ -12,9 +12,11 @@
 
 - [Kubernetes 入门](./docs/Kubernetes入门.md)
 - [Kubernetes 部署实践](./docs/Kubernetes部署实践.md)
+- [Kubernetes 核心概念与组件详解](./docs/Kubernetes核心概念与组件详解.md)
 - K8S 集群搭建
     - [1-环境准备](./docs/1-环境准备.md)
     - [2-搭建简易版k8s集群](./docs/2-搭建简易版k8s集群.md)
+- [Kubernetes 问题排查与记录](./docs/Kubernetes问题排查与记录.md)
 
 ## 参考
 - [Kubernetes 中文社区 | 中文文档](https://www.kubernetes.org.cn/k8s)
