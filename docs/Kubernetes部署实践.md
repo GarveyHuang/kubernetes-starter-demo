@@ -217,7 +217,7 @@ kubectl exec -it my-tomcat-685b8fd9c9-wbftv -- sh
 
 - 集群内访问（在集群里任意节点都可以访问）
 ```shell
-curl 172.25.149.163:8080
+curl 192.168.65.160:8080
 ```
 
 ![集群内部访问](./images/集群内部访问应用.png)
@@ -344,7 +344,7 @@ kubectl describe pod my-tomcat-547db86547-6xz57
 Name:         my-tomcat-547db86547-6xz57
 Namespace:    default
 Priority:     0
-Node:         k8s-node1/172.25.149.163
+Node:         k8s-node1/192.168.65.160
 Start Time:   Wed, 05 Jan 2022 15:57:36 +0800
 Labels:       app=my-tomcat
               pod-template-hash=547db86547
@@ -475,7 +475,7 @@ kubectl describe pods my-tomcat-685b8fd9c9-f6wck
 Name:         my-tomcat-685b8fd9c9-f6wck
 Namespace:    default
 Priority:     0
-Node:         k8s-node1/172.25.149.163
+Node:         k8s-node1/192.168.65.160
 Start Time:   Wed, 05 Jan 2022 16:05:19 +0800
 Labels:       app=my-tomcat
               pod-template-hash=685b8fd9c9
